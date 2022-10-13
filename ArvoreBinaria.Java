@@ -106,13 +106,16 @@ public class Arvore {
                return;
            }
            else {
-               if(Raiz != null) {
-                    AcharPosicao(Raiz.esquerda, valor_Achar);
-                    AcharPosicao(Raiz.Direita, valor_Achar);
-               }
-               else {
-                     System.out.println("Erro ao Pesquisar o Valor: " + valor_Achar + " Valor Inexistente");
-               }
+                   if(Raiz.esquerda != null) {
+                        AcharPosicao(Raiz.esquerda, valor_Achar);
+                   }
+                   else if(Raiz.Direita != null) {
+                      AcharPosicao(Raiz.Direita, valor_Achar);
+                   }
+                   else {
+                        if(Raiz.esquerda == null || Raiz.Direita == null)
+                            System.out.println("Erro ao Pesquisar o Valor: " + valor_Achar + " Valor Inexistente");
+                   }
            }
           
           
@@ -205,8 +208,10 @@ public class Arvore {
             }
             else if(resp == 2) {
                 
-                if(arv.Raiz == null)
+                if(arv.Raiz == null) {
                       System.out.println("Erro Arvore Vazia");
+                        arv.Menu();
+                }
                 else {
                     System.out.print("Mosrando RED:");
                     arv.MostrarArvoreRED(arv.Raiz);
@@ -224,7 +229,7 @@ public class Arvore {
                 
                 if(arv.Raiz == null) {
                     System.out.println("Erro Arvore Vazia");
-                     resp = arv.Menu();
+                    arv.Menu();
                 }
                 else {
                     System.out.print("Digite o Valor Para Eliminar:-> ");
@@ -232,13 +237,17 @@ public class Arvore {
                     arv.EliminarNoArvore(arv.Raiz,valueEliminar);
                 }
             }
-            else if(resp == 4) {
-                if(arv.Raiz == null)
+            else {
+                if(arv.Raiz == null) {
                     System.out.println("Erro Arvore Vazia");
+                     resp = arv.Menu();
+                }
+                else {
                     System.out.print("Digite um Valor para Pesquisar:-> ");
                     int valor_pesquisa = userMain.nextInt();
                     arv.AcharPosicao(arv.Raiz, valor_pesquisa);
                 }
+            }
                     
 
         }while(resp != 5);   
